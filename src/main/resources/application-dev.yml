@@ -1,0 +1,7 @@
+lhr:
+  ai:
+    openai:
+      api-key: sk-ws-H.EIYEDRE.kt1T.MEUCIGyRpihRQDKoTSsNoUSUS6Z2lE-xZoDReUDVa1QQGwvrAiEArjQjvu3Q2mtWIMdkYchCKVwm7e4teoxyU9i_JS21SLM
+      base-url: https://ws-0p3l9jhfzts2vfy1.cn-beijing.maas.aliyuncs.com/compatible-mode/v1
+      chat:
+        model: qwen3.7-max

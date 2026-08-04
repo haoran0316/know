@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-ai3
+  ai:
+    openai:
+      api-key: ${lhr.ai.openai.api-key}
+      base-url: ${lhr.ai.openai.base-url}
+      chat:
+        model: ${lhr.ai.openai.chat.model}
