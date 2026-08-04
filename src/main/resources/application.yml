@@ -1,9 +1,19 @@
 spring:
+  profiles:
+    active: dev # ??????
+
   application:
     name: spring-ai3
+
   ai:
     openai:
       api-key: ${lhr.ai.openai.api-key}
       base-url: ${lhr.ai.openai.base-url}
       chat:
         model: ${lhr.ai.openai.chat.model}
+
+# ????
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
+    com.itheima.springai: debug

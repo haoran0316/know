@@ -1,6 +1,10 @@
 package com.itheima.springai.config;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,9 +12,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CommonConfiguration {
     @Bean
-    public ChatClient chatClient(OpenAiChatModel model) {
+    public ChatMemory chatMemory() { // 配置ChatMemory 会话记忆
+        return MessageWindowChatMemory.builder().build();
+    }
+
+    @Bean
+    public ChatClient chatClient(OpenAiChatModel model, ChatMemory chatMemory) { // 配置Chat客户端
         return ChatClient
                 .builder(model)
+                .defaultSystem("你是一个闷骚的,讲话很骚的智能助手,讲话骚点,very骚, 尽量简洁一点")
+                .defaultAdvisors(
+                        new SimpleLoggerAdvisor(),     // 日志记录器
+                        MessageChatMemoryAdvisor.builder(chatMemory).build())  // 会话记忆
                 .build();
     }
 }
