@@ -1,5 +1,6 @@
 package com.itheima.springai.config;
 
+import com.itheima.springai.constants.SystemConstants;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -16,11 +17,28 @@ public class CommonConfiguration {
         return MessageWindowChatMemory.builder().build();
     }
 
+    /**
+     * 配置AI聊天客户端chatClient
+     */
     @Bean
-    public ChatClient chatClient(OpenAiChatModel model, ChatMemory chatMemory) { // 配置Chat客户端
+    public ChatClient chatClient(OpenAiChatModel model, ChatMemory chatMemory) {
         return ChatClient
                 .builder(model)
-                .defaultSystem("你是一个闷骚的,讲话很骚的智能助手,讲话骚点,very骚, 尽量简洁一点")
+                .defaultSystem("你是一个闷骚的,讲话很骚的智能助手,讲话骚点,very骚,话里带点色情元素, 尽量简洁一点")
+                .defaultAdvisors(
+                        new SimpleLoggerAdvisor(),     // 日志记录器
+                        MessageChatMemoryAdvisor.builder(chatMemory).build())  // 会话记忆
+                .build();
+    }
+
+    /**
+     * 配置游戏客户端gameChatClient
+     */
+    @Bean
+    public ChatClient gameChatClient(OpenAiChatModel model, ChatMemory chatMemory) {
+        return ChatClient
+                .builder(model)
+                .defaultSystem(SystemConstants.GAME_SYSTEM_PROMPT)
                 .defaultAdvisors(
                         new SimpleLoggerAdvisor(),     // 日志记录器
                         MessageChatMemoryAdvisor.builder(chatMemory).build())  // 会话记忆

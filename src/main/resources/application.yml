@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev # ??????
+    active: dev # 支持dev开发环境
 
   application:
     name: spring-ai3
@@ -12,7 +12,7 @@ spring:
       chat:
         model: ${lhr.ai.openai.chat.model}
 
-# ????
+# 日志配置
 logging:
   level:
     org.springframework.ai.chat.client.advisor: debug
