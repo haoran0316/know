@@ -1,14 +1,14 @@
-package com.itheima.springai.service.impl;
+package com.itheima.springai.repository;
 
-import com.itheima.springai.service.ChatHistoryService;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-@Service
-public class ChatHistoryServiceImpl implements ChatHistoryService {
+
+@Component
+public class InMemoryChatHistoryRepository implements ChatHistoryRepository{
     private final Map<String, List<String>> chatHistory = new HashMap<>();
 
     /**

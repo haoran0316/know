@@ -1,8 +1,8 @@
-package com.itheima.springai.service;
+package com.itheima.springai.repository;
 
 import java.util.List;
 
-public interface ChatHistoryService {
+public interface ChatHistoryRepository {
     /**
      * 保存会话记录
      */

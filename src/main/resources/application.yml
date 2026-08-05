@@ -12,6 +12,12 @@ spring:
       chat:
         model: ${lhr.ai.openai.chat.model}
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springai?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 123
+
 # 日志配置
 logging:
   level:
