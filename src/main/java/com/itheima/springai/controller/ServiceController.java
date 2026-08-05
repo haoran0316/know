@@ -18,7 +18,7 @@ public class ServiceController {
     private final ChatHistoryRepository chatHistoryRepository;
 
     @GetMapping(value = "/service", produces = "text/html;charset=utf-8")
-    public String chat(String prompt, String chatId) { // 处理聊天请求
+    public Flux<String> chat(String prompt, String chatId) { // 处理聊天请求
         // 1. 保存会话id
         chatHistoryRepository.save("service", chatId);
 
@@ -26,7 +26,7 @@ public class ServiceController {
         return serviceChatClient.prompt()
                 .user(prompt)
                 .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, chatId)) // 会话ID
-                .call()
+                .stream()
                 .content();
     }
 }
