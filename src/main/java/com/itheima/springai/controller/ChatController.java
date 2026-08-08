@@ -1,6 +1,6 @@
 package com.itheima.springai.controller;
 
-import com.itheima.springai.repository.ChatHistoryRepository;
+import com.itheima.springai.repository.IChatHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
@@ -14,10 +14,10 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/ai")
 public class ChatController {
     private final ChatClient chatClient;
-    private final ChatHistoryRepository chatHistoryRepository;
+    private final IChatHistoryRepository chatHistoryRepository;
 
     @PostMapping(value = "/chat", produces = "text/html;charset=utf-8")
-    public Flux<String> chat(String prompt, String chatId) { // 处理聊天请求
+    public Flux<String> AiChat(String prompt, String chatId) { // 处理聊天请求
         // 1. 保存会话id
         chatHistoryRepository.save("chat", chatId);
 

@@ -1,7 +1,7 @@
 package com.itheima.springai.controller;
 
 import com.itheima.springai.entity.vo.MessageVO;
-import com.itheima.springai.repository.ChatHistoryRepository;
+import com.itheima.springai.repository.IChatHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.messages.Message;
@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/ai/history")
 public class ChatHistoryController {
-    private final ChatHistoryRepository chatHistoryRepository;
+    private final IChatHistoryRepository chatHistoryRepository;
     private final ChatMemory chatMemory;
 
     /**

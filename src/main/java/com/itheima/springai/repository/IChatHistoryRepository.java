@@ -2,7 +2,7 @@ package com.itheima.springai.repository;
 
 import java.util.List;
 
-public interface ChatHistoryRepository {
+public interface IChatHistoryRepository {
     /**
      * 保存会话记录
      */
