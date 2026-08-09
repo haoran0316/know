@@ -147,11 +147,9 @@ npm run dev
 
 ## 八、常见问题
 
-1. **启动报「找不到或无法加载主类 com.itheima...」**
-   运行配置里的主类还是旧包名，改为 `com.knowflow.springai.SpringAi3Application` 即可。
-2. **知识库对话报 `NoSuchElementException`**
+1. **知识库对话报 `NoSuchElementException`**
    这是 Spring AI 2.0「流式 + 工具调用」的兼容性 bug，知识库对话已改为非流式 `call()` 规避；通用聊天 / PDF 问答仍为流式。
-3. **`uploads/` 目录**
+2. **`uploads/` 目录**
    PDF 上传的运行时文件，请加入 `.gitignore`，不要提交到仓库。
 
 ---
