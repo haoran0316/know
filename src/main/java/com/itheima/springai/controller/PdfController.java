@@ -63,7 +63,7 @@ public class PdfController {
         if (!resource.exists()) {
             return ResponseEntity.notFound().build();
         }
-        // 2.文件名编码，写入响应头
+        // 2.文件名编码，在后续返回文件时写入响应头  filename="Spring%E6%95%99%E7%A8%8B.pdf"
         String filename = URLEncoder.encode(Objects.requireNonNull(resource.getFilename()), StandardCharsets.UTF_8);
         // 3.返回文件
         return ResponseEntity.ok()

@@ -5,7 +5,30 @@ spring:
   application:
     name: spring-ai3
 
+  data:
+    redis:
+      host: ${lhr.redis.host}
+      port: ${lhr.redis.port}
+      password: ${lhr.redis.password}
+      client-type: jedis
+
   ai:
+    chat:
+      memory:
+        redis:
+          host: ${lhr.redis.host}
+          port: ${lhr.redis.port}
+          initialize-schema: true
+          metadata-fields:
+            - name: role
+              type: tag
+            - name: messageType
+              type: tag
+    vectorstore:
+      type: redis
+      redis:
+        initialize-schema: true
+
     openai:
       api-key: ${lhr.ai.openai.api-key}
       base-url: ${lhr.ai.openai.base-url}
