@@ -157,4 +157,3 @@ npm run dev
 ## 九、备注
 
 - 前端仓库与后端分离开发：IDEA 启动后端，VS Code `npm run dev` 启动前端
-- 大模型 API Key 等敏感信息请勿提交到公开仓库
