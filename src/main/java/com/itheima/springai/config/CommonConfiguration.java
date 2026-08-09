@@ -1,7 +1,7 @@
 package com.itheima.springai.config;
 
 import com.itheima.springai.constants.SystemConstants;
-import com.itheima.springai.tools.CourseTools;
+import com.itheima.springai.tools.KnowledgeBaseTools;
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.rag.retrieval.search.DocumentRetriever;
 import org.springframework.ai.rag.retrieval.search.VectorStoreDocumentRetriever;
@@ -44,7 +44,6 @@ public class CommonConfiguration {
                 .build();
     }
 
-
     /**
      * 配置Redis向量库,注册chat_id元数据字段,PDF按会话过滤才能生效
      */
@@ -57,6 +56,7 @@ public class CommonConfiguration {
                 .metadataFields(RedisVectorStore.MetadataField.tag("chat_id"))
                 .build();
     }
+
     /**
      * 配置AI聊天客户端chatClient
      */
@@ -69,21 +69,6 @@ public class CommonConfiguration {
                 .defaultAdvisors(
                         new SimpleLoggerAdvisor(),     // 日志记录器
                         MessageChatMemoryAdvisor.builder(chatMemory).build())  // 会话记忆
-                .build();
-    }
-
-    /**
-     * 配置客服客户端serviceChatClient
-     */
-    @Bean
-    public ChatClient serviceChatClient(OpenAiChatModel model, ChatMemory chatMemory, CourseTools courseTools) {
-        return ChatClient
-                .builder(model)
-                .defaultSystem(SystemConstants.SERVICE_SYSTEM_PROMPT)
-                .defaultAdvisors(
-                        new SimpleLoggerAdvisor(),     // 日志记录器
-                        MessageChatMemoryAdvisor.builder(chatMemory).build())  // 会话记忆
-                .defaultTools(courseTools) // 注册工具
                 .build();
     }
 
@@ -111,4 +96,17 @@ public class CommonConfiguration {
                 .build();
     }
 
+    /**
+     * 配置知识库管家客户端 kbChatClient（注册知识库工具）
+     */
+    @Bean
+    public ChatClient kbChatClient(OpenAiChatModel model, ChatMemory chatMemory, KnowledgeBaseTools knowledgeBaseTools) {
+        return ChatClient.builder(model)
+                .defaultSystem(SystemConstants.KB_SYSTEM_PROMPT)
+                .defaultAdvisors(
+                        new SimpleLoggerAdvisor(),     // 日志记录器
+                        MessageChatMemoryAdvisor.builder(chatMemory).build())  // 会话记忆
+                .defaultTools(knowledgeBaseTools) // 注册知识库工具
+                .build();
+    }
 }

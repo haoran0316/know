@@ -1,44 +1,28 @@
 package com.itheima.springai.entity.pojo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
- * <p>
- * 校区表
- * </p>
- *
- * @author lhr
- * @since 2026-08-04
+ * 知识库标签表
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("school")
-public class School implements Serializable {
+@TableName("kb_tag")
+public class KbTag implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
-    /**
-     * 校区名称
-     */
+    /** 标签名 */
     private String name;
-
-    /**
-     * 校区所在城市
-     */
-    private String city;
-
-
 }
