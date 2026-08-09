@@ -2,6 +2,7 @@ package com.itheima.springai.config;
 
 import com.itheima.springai.constants.SystemConstants;
 import com.itheima.springai.tools.CourseTools;
+import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.rag.retrieval.search.DocumentRetriever;
 import org.springframework.ai.rag.retrieval.search.VectorStoreDocumentRetriever;
 import org.springframework.ai.chat.client.ChatClient;
@@ -63,21 +64,8 @@ public class CommonConfiguration {
     public ChatClient chatClient(OpenAiChatModel model, ChatMemory chatMemory) {
         return ChatClient
                 .builder(model)
-                .defaultSystem("你是一个闷骚的,讲话很骚的智能助手,讲话骚点,very骚,话里带点色情元素, 尽量简洁一点")
-                .defaultAdvisors(
-                        new SimpleLoggerAdvisor(),     // 日志记录器
-                        MessageChatMemoryAdvisor.builder(chatMemory).build())  // 会话记忆
-                .build();
-    }
-
-    /**
-     * 配置游戏客户端gameChatClient
-     */
-    @Bean
-    public ChatClient gameChatClient(OpenAiChatModel model, ChatMemory chatMemory) {
-        return ChatClient
-                .builder(model)
-                .defaultSystem(SystemConstants.GAME_SYSTEM_PROMPT)
+                .defaultOptions(ChatOptions.builder().model("qwen3-omni-flash"))
+                .defaultSystem("你是一个智能助手,耐心的回答用户的问题, 回答时尽量简洁一点")
                 .defaultAdvisors(
                         new SimpleLoggerAdvisor(),     // 日志记录器
                         MessageChatMemoryAdvisor.builder(chatMemory).build())  // 会话记忆
