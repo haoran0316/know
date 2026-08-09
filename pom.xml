@@ -8,11 +8,11 @@
         <version>4.1.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.itheima</groupId>
-    <artifactId>spring-ai3</artifactId>
+    <groupId>com.knowflow</groupId>
+    <artifactId>spring-ai-KnowFlow</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-ai3</name>
-    <description>spring-ai3</description>
+    <name>knowflow</name>
+    <description>知汇(KnowFlow) - 基于 Spring AI 的知识库平台</description>
     <url/>
     <licenses>
         <license/>

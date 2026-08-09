@@ -1,0 +1,21 @@
+package com.knowflow.springai.config;
+
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
+
+@Configuration
+@MapperScan("com.knowflow.springai.mapper")
+public class MybatisPlusConfig {
+    
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+        MybatisSqlSessionFactoryBean factoryBean = new MybatisSqlSessionFactoryBean();
+        factoryBean.setDataSource(dataSource);
+        return factoryBean.getObject();
+    }
+}
